@@ -1,0 +1,39 @@
+{
+    "manifest_version" : 3,
+    "name" : "Ad Blocker and YouTube Video Summarizer",
+    "description" : "A chrome extension to summarize YouTube videos using the transcript",
+    "version": "1.0",
+    "permissions" : ["activeTab" , "declarativeContent", "declarativeNetRequest" , "tabs"],
+    "host_permissions" : ["http://127.0.0.1:5000/*"],
+    "declarative_net_request" : {
+        "rule_resources" : [
+            {
+                "id" : "ruleset_1",
+                "enabled" : true,
+                "path" : "rules.json"
+            }
+        ]
+    },
+    "content_scripts" : [{
+        "js" : ["addBlock.js"] , 
+        "run_at" : "document_idle",
+        "matches":["<all_urls>"]
+    }],
+    "action" : {
+        "default_title" : "Summarize this video",
+        "default_icon" : {
+            "16" : "images/YouTube_icon.png",
+            "32" : "images/YouTube_icon.png",
+            "48" : "images/YouTube_icon.png",
+            "128" : "images/YouTube_icon.png"
+        },
+        "default_popup" : "index.html"
+    },
+
+    "icons" : {
+        "16" : "images/YouTube_icon.png",
+        "32" : "images/YouTube_icon.png",
+        "48" : "images/YouTube_icon.png",
+        "128" : "images/YouTube_icon.png"
+    }
+}
